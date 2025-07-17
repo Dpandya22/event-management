@@ -11,7 +11,7 @@ A simple Django project to manage events, bookings, and schedules.
 ## 🛠️ Tech Used
 - Python, Django
 - HTML, CSS, Bootstrap 
-- SQLite
+- SQL
 
 
 ## 🧑‍💻 Author
