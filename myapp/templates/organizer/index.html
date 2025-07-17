@@ -1,0 +1,96 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Event Management - Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+    </style>
+
+        
+
+</head>
+<body class="bg-gray-100">
+    {% if message  %}
+        <script> alert("{{ message }}") </script>
+    {% endif %}
+    
+    <!-- Navbar -->
+    <nav class="bg-white shadow-md">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a class="text-2xl font-bold text-gray-800" href="#">
+                Eventify
+            </a>
+            <!-- <ul class="flex space-x-6">
+                <li>
+                    <a class="text-gray-600 hover:text-gray-800" href="home.html">
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a class="text-gray-600 hover:text-gray-800" href="events.html">
+                        Events
+                    </a>
+                </li>
+                <li>
+                    <a class="text-gray-600 hover:text-gray-800" href="aboutus.html">
+                        About
+                    </a>
+                </li>
+                <li>
+                    <a class="text-gray-600 hover:text-gray-800" href="contactus.html">
+                        Contact
+                    </a>
+                </li>
+            </ul> -->
+        </div>
+    </nav>
+
+    <!-- Login Section -->
+    <section class="py-11 bg-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Login</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto mb-8">
+                Welcome back! Please login to your account.
+            </p>
+            <div class="max-w-2xl mx-auto bg-gray-100 p-8 rounded-lg shadow-md">
+                <form action="login_process" method="post">
+                    {% csrf_token %}
+                    <div class="mb-4 text-left">
+                        <label class="block text-gray-700 font-bold mb-2">Email</label>
+                        <input class="w-full p-3 rounded border border-gray-300" type="email" name="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="mb-4 text-left">
+                        <label class="block text-gray-700 font-bold mb-2">Password</label>
+                        <input class="w-full p-3 rounded border border-gray-300" type="password" name="password" placeholder="Your Password" required>
+                    </div>
+                    <button class="bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-gray-700" type="submit">
+                        Login
+                    </button>
+                    <div class="mb-4 text-center">
+                        <label class="block text-gray-700 font-bold mb-2">Don't have account?<a href="signup"> Sign up</a></label>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p>© 2023 Eventify. All rights reserved.</p>
+            <div class="flex justify-center space-x-4 mt-4">
+                <a class="text-white hover:text-gray-400" href="#"><i class="fab fa-facebook-f"></i></a>
+                <a class="text-white hover:text-gray-400" href="#"><i class="fab fa-twitter"></i></a>
+                <a class="text-white hover:text-gray-400" href="#"><i class="fab fa-instagram"></i></a>
+                <a class="text-white hover:text-gray-400" href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

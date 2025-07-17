@@ -1,0 +1,183 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Event Management Organizer Panel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="min-h-screen flex flex-col">
+        <!-- Header -->
+        <header class="bg-white shadow-md py-4">
+            <div class="container mx-auto flex justify-between items-center px-6">
+                <div class="text-2xl font-bold text-gray-800">Organizer Panel Dashboard</div>
+                <div class="flex items-center space-x-4 relative">
+                    <button class="text-gray-600 hover:text-gray-800">
+                        <i class="fas fa-bell"></i>
+                    </button>
+                    <div class="relative">
+                        <button class="text-gray-600 hover:text-gray-800 focus:outline-none" id="user-menu-button">
+                            <i class="fas fa-user-circle"></i>
+                        </button>
+                        <div class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-2 z-20 hidden" id="user-menu">
+                            <a href="myprofile.html" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Profile</a>
+                            <a href="setting.html" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Settings</a>
+                            <a href="login.html" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Main Content -->
+        <div class="flex flex-1">
+            <!-- Sidebar -->
+            <aside class="bg-white w-64 min-h-screen shadow-md">
+                <nav class="mt-10">
+                    <a class="flex items-center py-2 px-6 text-gray-600 hover:bg-gray-200 hover:text-gray-800" href="dashboard.html">
+                        <i class="fas fa-tachometer-alt mr-3"></i>
+                        Dashboard
+                    </a>
+                    <a class="flex items-center py-2 px-6 text-gray-600 hover:bg-gray-200 hover:text-gray-800" href="pending.html">
+                        <i class="fas fa-calendar-alt mr-3"></i>
+                         Events
+                    </a>
+                    <a class="flex items-center py-2 px-6 text-gray-600 hover:bg-gray-200 hover:text-gray-800" href="user.html">
+                        <i class="fas fa-users mr-3"></i>
+                        Users 
+                    </a>
+                    <a class="flex items-center py-2 px-6 text-gray-600 hover:bg-gray-200 hover:text-gray-800" href="setting.html">
+                        <i class="fas fa-cogs mr-3"></i>
+                        Settings
+                    </a>
+                </nav>
+            </aside>
+            <!-- Main Section -->
+            <main class="flex-1 p-6">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">
+                    {% if past_events %}
+                    Event History
+                    {% elif upcoming_events %}
+                    Upcoming Events
+                    {% endif %}
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-1 gap-6">
+                    <!-- Upcoming Events -->
+                    <div>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full bg-white">
+                                <thead>
+                                    <tr>
+                                        <th class="py-2 px-4 border-b border-gray-200 text-left text-sm font-semibold text-gray-600">Event Image</th>
+                                        <th class="py-2 px-4 border-b border-gray-200 text-left text-sm font-semibold text-gray-600">Event Title</th>
+                                        <th class="py-2 px-4 border-b border-gray-200 text-left text-sm font-semibold text-gray-600">Date</th>
+                                        <th class="py-2 px-4 border-b border-gray-200 text-left text-sm font-semibold text-gray-600">Actions</th>
+                                        <th class="py-2 px-4 border-b border-gray-200 text-left text-sm font-semibold text-gray-600">Status</th>
+                                        {% if upcoming_events %}
+                                            <th class="py-2 px-4 border-b border-gray-200 text-left text-sm font-semibold text-gray-600">Opr 1</th>
+                                        {% endif %}
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% if past_events %}
+                                    {% for event in past_events %}
+
+                                        <tr>
+                                            <td class="py-2 px-4 border-b border-gray-200">
+                                                <img alt="Event image with people gathered in a hall" class="w-30 h-20 object-cover rounded" src="{{event.cover_image.url}}"/>
+                                            </td>
+                                            <td class="py-2 px-4 border-b border-gray-200">{{event.name}}</td>
+                                            <td class="py-2 px-4 border-b border-gray-200">{{event.date}}</td>
+                                            <td class="py-2 px-4 border-b border-gray-200">
+                                                <a href="view_event_details?id={{event.id}}" class="text-blue-600 hover:underline">View Details</a>
+                                            </td>
+                                            <td class="py-2 px-4 border-b border-gray-200 text-blue-600">completed</td>
+                                            
+                                        </tr>
+
+                                    {% endfor %}
+
+                                    {% elif upcoming_events %} 
+                                        
+                                    {% for event in upcoming_events %}
+
+                                        {% if event != "No Events" %}
+
+                                            <tr>
+                                                <td class="py-2 px-4 border-b border-gray-200">
+                                                    <img alt="Event image with people gathered in a hall" class="w-30 h-20 object-cover rounded" src="{{event.cover_image.url}}"/>
+                                                </td>
+                                                <td class="py-2 px-4 border-b border-gray-200">{{event.name}}</td>
+                                                <td class="py-2 px-4 border-b border-gray-200">{{event.date}}</td>
+                                                <td class="py-2 px-4 border-b border-gray-200">
+                                                    <a href="view_event_details?id={{event.id}}" class="text-blue-600 hover:underline">View Details</a></button>
+                                                </td>
+                                                <td class="py-2 px-4 border-b border-gray-200 text-blue-600">upcoming</td>
+                                                <td class="py-2 px-4 border-b border-gray-200 text-red-600 "><a href="delete_event?id={{event.id}}" onclick="return confirmDelete('{{ event.id }}')" >Delete</a></td>
+                                                
+                                            </tr>
+
+                                        {% else %}
+                                            <h2 class="text-2xl font-bold text-gray-800 mb-6">No Upcoming Events</h2>
+
+                                        {% endif %}
+
+                                        {% endfor %}
+
+
+                                    {% endif %}
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                </div>
+            </main>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+
+        function confirmDelete(eventId) {
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this! All the payments regarding this event will be canceled and reverted to the registrant..",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#d33",
+                    cancelButtonColor: "#3085d6",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = "delete_event?id=" + eventId;
+                    }
+                });
+                return false; // Prevent default link behavior
+            }
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const userMenuButton = document.getElementById("user-menu-button");
+            const userMenu = document.getElementById("user-menu");
+    
+            userMenuButton.addEventListener("click", function () {
+                userMenu.classList.toggle("hidden");
+            });
+    
+            // Close dropdown when clicking outside
+            document.addEventListener("click", function (event) {
+                if (!userMenuButton.contains(event.target) && !userMenu.contains(event.target)) {
+                    userMenu.classList.add("hidden");
+                }
+            });
+        });
+    </script>
+</body>
+</html>

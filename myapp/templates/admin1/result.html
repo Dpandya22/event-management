@@ -1,0 +1,177 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Event Management Admin Panel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="min-h-screen flex flex-col">
+        <!-- Header -->
+        <header class="bg-white shadow-md py-4">
+            <div class="container mx-auto flex justify-between items-center px-6">
+                <div class="text-2xl font-bold text-gray-800">Admin Panel Dashboard</div>
+                <div class="flex items-center space-x-4 relative">
+                    <button class="text-gray-600 hover:text-gray-800">
+                        <i class="fas fa-bell"></i>
+                    </button>
+                    <div class="relative">
+                        <button class="text-gray-600 hover:text-gray-800 focus:outline-none" id="user-menu-button">
+                            <i class="fas fa-user-circle"></i>
+                        </button>
+                        <div class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-2 z-20 hidden" id="user-menu">
+                            <a href="/myprofile/" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Profile</a>
+                            <a href="/setting/" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Settings</a>
+                            <a href="/login/" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Main Content -->
+        <div class="flex flex-1">
+            <!-- Sidebar -->
+            <aside class="bg-white w-64 min-h-screen shadow-md">
+                <nav class="mt-10">
+                    <a class="flex items-center py-2 px-6 text-gray-600 hover:bg-gray-200 hover:text-gray-800" href="dashboard">
+                        <i class="fas fa-tachometer-alt mr-3"></i>
+                        Dashboard
+                    </a>
+                    <a class="flex items-center py-2 px-6 text-gray-600 hover:bg-gray-200 hover:text-gray-800" href="pending">
+                        <i class="fas fa-calendar-alt mr-3"></i>
+                         Events Pending
+                    </a>
+                    <a class="flex items-center py-2 px-6 text-gray-600 hover:bg-gray-200 hover:text-gray-800" href="result">
+                        <i class="fas fa-calendar-alt mr-3"></i>
+                        Events Result
+                    </a>
+                    <a class="flex items-center py-2 px-6 text-gray-600 hover:bg-gray-200 hover:text-gray-800" href="user">
+                        <i class="fas fa-users mr-3"></i>
+                        Participant Users 
+                    </a>
+                    <a class="flex items-center py-2 px-6 text-gray-600 hover:bg-gray-200 hover:text-gray-800" href="organizer">
+                        <i class="fas fa-users mr-3"></i>
+                        Organizer Users 
+                    </a>
+                    <a class="flex items-center py-2 px-6 text-gray-600 hover:bg-gray-200 hover:text-gray-800" href="setting">
+                        <i class="fas fa-cogs mr-3"></i>
+                        Settings
+                    </a>
+                </nav>
+            </aside>
+            <!-- Main Section -->
+            <main class="flex-1 p-6">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Event Results</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Accepted Events -->
+                    <div>
+                        <h3 class="text-xl font-semibold text-green-600 mb-4">Accepted Events</h3>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full bg-white">
+                                <thead>
+                                    <tr>
+                                        <th class="py-2 px-4 border-b border-gray-200 text-left text-sm font-semibold text-gray-600">Event Image</th>
+                                        <th class="py-2 px-4 border-b border-gray-200 text-left text-sm font-semibold text-gray-600">Event Title</th>
+                                        <th class="py-2 px-4 border-b border-gray-200 text-left text-sm font-semibold text-gray-600">Description</th>
+                                        <th class="py-2 px-4 border-b border-gray-200 text-left text-sm font-semibold text-gray-600">Date</th>
+                                        <th class="py-2 px-4 border-b border-gray-200 text-left text-sm font-semibold text-gray-600">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b border-gray-200">
+                                            <img alt="Event image with people gathered in a hall" class="w-20 h-20 object-cover rounded" src="https://storage.googleapis.com/a1aa/image/Td6eiz8lRPFCZsOrAhtYQKVaUpb42a4af4pUjCjdYJw.jpg"/>
+                                        </td>
+                                        <td class="py-2 px-4 border-b border-gray-200">Event Title 1</td>
+                                        <td class="py-2 px-4 border-b border-gray-200">Event description goes here. It provides a brief overview of the event.</td>
+                                        <td class="py-2 px-4 border-b border-gray-200">12th Dec 2023</td>
+                                        <td class="py-2 px-4 border-b border-gray-200">
+                                            <button class="text-blue-600 hover:underline">View Details</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b border-gray-200">
+                                            <img alt="Event image with a speaker on stage" class="w-20 h-20 object-cover rounded" src="https://storage.googleapis.com/a1aa/image/ggof1gkblJwCK5teHFc34zonG-IbGGmdPAoBAafw88s.jpg"/>
+                                        </td>
+                                        <td class="py-2 px-4 border-b border-gray-200">Event Title 2</td>
+                                        <td class="py-2 px-4 border-b border-gray-200">Event description goes here. It provides a brief overview of the event.</td>
+                                        <td class="py-2 px-4 border-b border-gray-200">15th Jan 2024</td>
+                                        <td class="py-2 px-4 border-b border-gray-200">
+                                            <button class="text-blue-600 hover:underline">View Details</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- Rejected Events -->
+                    <div>
+                        <h3 class="text-xl font-semibold text-red-600 mb-4">Rejected Events</h3>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full bg-white">
+                                <thead>
+                                    <tr>
+                                        <th class="py-2 px-4 border-b border-gray-200 text-left text-sm font-semibold text-gray-600">Event Image</th>
+                                        <th class="py-2 px-4 border-b border-gray-200 text-left text-sm font-semibold text-gray-600">Event Title</th>
+                                        <th class="py-2 px-4 border-b border-gray-200 text-left text-sm font-semibold text-gray-600">Description</th>
+                                        <th class="py-2 px-4 border-b border-gray-200 text-left text-sm font-semibold text-gray-600">Date</th>
+                                        <th class="py-2 px-4 border-b border-gray-200 text-left text-sm font-semibold text-gray-600">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b border-gray-200">
+                                            <img alt="Event image with a networking session" class="w-20 h-20 object-cover rounded" src="https://storage.googleapis.com/a1aa/image/9oMVtPoOW3f-5ZfUp_K3n9Qeyds9vBSqX8EuFWB9Qws.jpg"/>
+                                        </td>
+                                        <td class="py-2 px-4 border-b border-gray-200">Event Title 3</td>
+                                        <td class="py-2 px-4 border-b border-gray-200">Event description goes here. It provides a brief overview of the event.</td>
+                                        <td class="py-2 px-4 border-b border-gray-200">20th Feb 2024</td>
+                                        <td class="py-2 px-4 border-b border-gray-200">
+                                            <button class="text-blue-600 hover:underline">View Details</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-4 border-b border-gray-200">
+                                            <img alt="Event image with a workshop session" class="w-20 h-20 object-cover rounded" src="https://storage.googleapis.com/a1aa/image/yAZDLtm6g1dHpbrc6EvsB126e6iYVWq9CYNxFeJ_jhs.jpg"/>
+                                        </td>
+                                        <td class="py-2 px-4 border-b border-gray-200">Event Title 4</td>
+                                        <td class="py-2 px-4 border-b border-gray-200">Event description goes here. It provides a brief overview of the event.</td>
+                                        <td class="py-2 px-4 border-b border-gray-200">5th Mar 2024</td>
+                                        <td class="py-2 px-4 border-b border-gray-200">
+                                            <button class="text-blue-600 hover:underline">View Details</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const userMenuButton = document.getElementById("user-menu-button");
+            const userMenu = document.getElementById("user-menu");
+    
+            userMenuButton.addEventListener("click", function () {
+                userMenu.classList.toggle("hidden");
+            });
+    
+            // Close dropdown when clicking outside
+            document.addEventListener("click", function (event) {
+                if (!userMenuButton.contains(event.target) && !userMenu.contains(event.target)) {
+                    userMenu.classList.add("hidden");
+                }
+            });
+        });
+    </script>
+</body>
+</html>

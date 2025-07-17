@@ -1,0 +1,205 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Organizer Panel Dashboard - Event Requests</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="min-h-screen flex flex-col">
+        <!-- Header -->
+        <header class="bg-white shadow-md py-4">
+            <div class="container mx-auto flex justify-between items-center px-6">
+                <div class="text-2xl font-bold text-gray-800">Organizer Panel Dashboard</div>
+                <div class="flex items-center space-x-4 relative">
+                    <button class="text-gray-600 hover:text-gray-800">
+                        <i class="fas fa-bell"></i>
+                    </button>
+                    <div class="relative">
+                        <button class="text-gray-600 hover:text-gray-800 focus:outline-none" id="user-menu-button">
+                            <i class="fas fa-user-circle"></i>
+                        </button>
+                        <div class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-2 z-20 hidden" id="user-menu">
+                            <a href="myprofile.html" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Profile</a>
+                            <a href="setting.html" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Settings</a>
+                            <a href="login.html" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Main Content -->
+        <div class="flex flex-1">
+            <!-- Sidebar -->
+            <aside class="bg-white w-64 min-h-screen shadow-md">
+                <nav class="mt-10">
+                    <a class="flex items-center py-2 px-6 text-gray-600 hover:bg-gray-200 hover:text-gray-800" href="dashboard.html">
+                        <i class="fas fa-tachometer-alt mr-3"></i>
+                        Dashboard
+                    </a>
+                    <a class="flex items-center py-2 px-6 text-gray-600 hover:bg-gray-200 hover:text-gray-800" href="pending.html">
+                        <i class="fas fa-calendar-alt mr-3"></i>
+                         Events
+                    </a>
+                    <a class="flex items-center py-2 px-6 text-gray-600 hover:bg-gray-200 hover:text-gray-800" href="user.html">
+                        <i class="fas fa-users mr-3"></i>
+                        Users 
+                    </a>
+                    <a class="flex items-center py-2 px-6 text-gray-600 hover:bg-gray-200 hover:text-gray-800" href="setting.html">
+                        <i class="fas fa-cogs mr-3"></i>
+                        Settings
+                    </a>
+                </nav>
+            </aside>
+            <!-- Main Section -->
+            <main class="flex-1 p-6">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h2 class="text-2xl font-bold mb-6">Organize Event</h2>
+                    <form action="add_event_process" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="event-category">
+                                Event Category
+                            </label>
+                            {% if event_category %}
+                            <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="category_id">
+                            {% for category in event_category %}
+
+                            <option value="{{ category.id }}">{{category.cat_name}}</option>
+
+                            {% endfor %}
+                            </select>
+                            {% endif %}
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="event-name">
+                                Event Name
+                            </label>
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="event_name" id="event-name" placeholder="Event Name" type="text" />
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="event-date">
+                                Event Date
+                            </label>
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="event_date" id="event-date" type="date" />
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="event-time">
+                                Event Start Time
+                            </label>
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="event_time" id="event-time" type="time" />
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="event-time">
+                                Event Ticket Price (Per person)
+                            </label>
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="event_price" id="event-time" type="number" />
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="event-ticket">
+                                Total Tickets for Sale
+                            </label>
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="total_tickets" id="total-tickets" type="number" />
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="event-location">
+                                Event Location
+                            </label>
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="event_location" id="event-location" placeholder="Event Location/ mention city/district/area" type="text" />
+                        </div>
+                        <div class="mb-4">
+                            <label for="stateSelect" class="block text-gray-700 text-sm font-bold mb-2">Select State:</label>
+                            <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="event_state" id="stateSelect">
+                                <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                                <option value="Assam">Assam</option>
+                                <option value="Bihar">Bihar</option>
+                                <option value="Chhattisgarh">Chhattisgarh</option>
+                                <option value="Goa">Goa</option>
+                                <option value="Gujarat">Gujarat</option>
+                                <option value="Haryana">Haryana</option>
+                                <option value="Himachal Pradesh">Himachal Pradesh</option>
+                                <option value="Jharkhand">Jharkhand</option>
+                                <option value="Karnataka">Karnataka</option>
+                                <option value="Kerala">Kerala</option>
+                                <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                <option value="Maharashtra">Maharashtra</option>
+                                <option value="Manipur">Manipur</option>
+                                <option value="Meghalaya">Meghalaya</option>
+                                <option value="Mizoram">Mizoram</option>
+                                <option value="Nagaland">Nagaland</option>
+                                <option value="Odisha">Odisha</option>
+                                <option value="Punjab">Punjab</option>
+                                <option value="Rajasthan">Rajasthan</option>
+                                <option value="Sikkim">Sikkim</option>
+                                <option value="Tamil Nadu">Tamil Nadu</option>
+                                <option value="Telangana">Telangana</option>
+                                <option value="Tripura">Tripura</option>
+                                <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                <option value="Uttarakhand">Uttarakhand</option>
+                                <option value="West Bengal">West Bengal</option>
+                                <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                                <option value="Chandigarh">Chandigarh</option>
+                                <option value="Dadra and Nagar Haveli and Daman and Diu">Dadra and Nagar Haveli and Daman and Diu</option>
+                                <option value="Lakshadweep">Lakshadweep</option>
+                                <option value="Delhi">Delhi</option>
+                                <option value="Puducherry">Puducherry</option>
+                                <option value="Ladakh">Ladakh</option>
+                                <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                            </select>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="event-description">
+                                Event Description
+                            </label>
+                            <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="event_desc" id="event-description" placeholder="Event Description" rows="4"></textarea>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="event-name">
+                                Add Event Cover Image
+                            </label>
+                            <input class="w-full p-3 rounded border border-gray-300" type="file" name="cover_picture" accept="image/*" required>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                                Schedule
+                            </button>
+                            <a href="#">
+                            <button class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+                                Back
+                            </button></a>
+                        </div>
+                    </form>
+                </div>
+            </main>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const userMenuButton = document.getElementById("user-menu-button");
+            const userMenu = document.getElementById("user-menu");
+    
+            userMenuButton.addEventListener("click", function () {
+                userMenu.classList.toggle("hidden");
+            });
+    
+            // Close dropdown when clicking outside
+            document.addEventListener("click", function (event) {
+                if (!userMenuButton.contains(event.target) && !userMenu.contains(event.target)) {
+                    userMenu.classList.add("hidden");
+                }
+            });
+        });
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,429 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Event Management Admin Panel
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+  <style>
+   body {
+            font-family: 'Roboto', sans-serif;
+        }
+  </style>
+ </head>
+ <body class="bg-gray-100">
+  <div class="min-h-screen flex flex-col">
+   <!-- Header -->
+   <header class="bg-white shadow-md py-4">
+    <div class="container mx-auto flex justify-between items-center px-6">
+        <div class="text-2xl font-bold text-gray-800">Admin Panel Dashboard</div>
+        <div class="flex items-center space-x-4 relative">
+            <button class="text-gray-600 hover:text-gray-800">
+                <i class="fas fa-bell"></i>
+            </button>
+            <div class="relative">
+                <button class="text-gray-600 hover:text-gray-800 focus:outline-none" id="user-menu-button">
+                    <i class="fas fa-user-circle"></i>
+                </button>
+                <div class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-2 z-20 hidden" id="user-menu">
+                    <a href="myprofile.html" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Profile</a>
+                    <a href="setting.html" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Settings</a>
+                    <a href="login.html" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Main Content -->
+<div class="flex flex-1">
+    <!-- Sidebar -->
+    <aside class="bg-white w-64 min-h-screen shadow-md">
+        <nav class="mt-10">
+            <a class="flex items-center py-2 px-6 text-gray-600 hover:bg-gray-200 hover:text-gray-800" href="dashboard.html">
+                <i class="fas fa-tachometer-alt mr-3"></i>
+                Dashboard
+            </a>
+            <a class="flex items-center py-2 px-6 text-gray-600 hover:bg-gray-200 hover:text-gray-800" href="pending.html">
+                <i class="fas fa-calendar-alt mr-3"></i>
+                 Events Pending
+            </a>
+            <a class="flex items-center py-2 px-6 text-gray-600 hover:bg-gray-200 hover:text-gray-800" href="result.html">
+                <i class="fas fa-calendar-alt mr-3"></i>
+                Events Result
+            </a>
+            <a class="flex items-center py-2 px-6 text-gray-600 hover:bg-gray-200 hover:text-gray-800" href="user.html">
+                <i class="fas fa-users mr-3"></i>
+                Participant Users 
+            </a>
+            <a class="flex items-center py-2 px-6 text-gray-600 hover:bg-gray-200 hover:text-gray-800" href="organizer.html">
+                <i class="fas fa-users mr-3"></i>
+                Organizer Users 
+            </a>
+            <a class="flex items-center py-2 px-6 text-gray-600 hover:bg-gray-200 hover:text-gray-800" href="setting.html">
+                <i class="fas fa-cogs mr-3"></i>
+                Settings
+            </a>
+        </nav>
+    </aside>
+    <!-- Main Section -->
+    <main class="flex-1 p-6">
+     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Event Card -->
+      <div class="bg-white p-4 rounded-lg shadow-md">
+       <img alt="Event image with people gathered in a hall" class="w-full h-40 object-cover rounded-t-lg" height="200" src="https://storage.googleapis.com/a1aa/image/Td6eiz8lRPFCZsOrAhtYQKVaUpb42a4af4pUjCjdYJw.jpg" width="300"/>
+       <div class="mt-4">
+        <h3 class="text-lg font-semibold text-gray-800">
+         Event Title 1
+        </h3>
+        <p class="text-gray-600 mt-2">
+         Event description goes here. It provides a brief overview of the event.
+        </p>
+        <div class="mt-4 flex justify-between items-center">
+         <span class="text-gray-600">
+          <i class="fas fa-calendar-alt mr-2">
+          </i>
+          12th Dec 2023
+         </span>
+         <a href="request.html">
+         <button class="text-blue-600 hover:underline">
+          View Details
+         </button></a>
+        </div>
+       </div>
+      </div>
+      <!-- Event Card -->
+      <div class="bg-white p-4 rounded-lg shadow-md">
+       <img alt="Event image with a speaker on stage" class="w-full h-40 object-cover rounded-t-lg" height="200" src="https://storage.googleapis.com/a1aa/image/ggof1gkblJwCK5teHFc34zonG-IbGGmdPAoBAafw88s.jpg" width="300"/>
+       <div class="mt-4">
+        <h3 class="text-lg font-semibold text-gray-800">
+         Event Title 2
+        </h3>
+        <p class="text-gray-600 mt-2">
+         Event description goes here. It provides a brief overview of the event.
+        </p>
+        <div class="mt-4 flex justify-between items-center">
+         <span class="text-gray-600">
+          <i class="fas fa-calendar-alt mr-2">
+          </i>
+          15th Jan 2024
+         </span>
+         <button class="text-blue-600 hover:underline">
+          View Details
+         </button>
+        </div>
+       </div>
+      </div>
+      <!-- Event Card -->
+      <div class="bg-white p-4 rounded-lg shadow-md">
+       <img alt="Event image with a networking session" class="w-full h-40 object-cover rounded-t-lg" height="200" src="https://storage.googleapis.com/a1aa/image/9oMVtPoOW3f-5ZfUp_K3n9Qeyds9vBSqX8EuFWB9Qws.jpg" width="300"/>
+       <div class="mt-4">
+        <h3 class="text-lg font-semibold text-gray-800">
+         Event Title 3
+        </h3>
+        <p class="text-gray-600 mt-2">
+         Event description goes here. It provides a brief overview of the event.
+        </p>
+        <div class="mt-4 flex justify-between items-center">
+         <span class="text-gray-600">
+          <i class="fas fa-calendar-alt mr-2">
+          </i>
+          20th Feb 2024
+         </span>
+         <button class="text-blue-600 hover:underline">
+          View Details
+         </button>
+        </div>
+       </div>
+      </div>
+      <!-- Event Card -->
+      <div class="bg-white p-4 rounded-lg shadow-md">
+       <img alt="Event image with a workshop session" class="w-full h-40 object-cover rounded-t-lg" height="200" src="https://storage.googleapis.com/a1aa/image/yAZDLtm6g1dHpbrc6EvsB126e6iYVWq9CYNxFeJ_jhs.jpg" width="300"/>
+       <div class="mt-4">
+        <h3 class="text-lg font-semibold text-gray-800">
+         Event Title 4
+        </h3>
+        <p class="text-gray-600 mt-2">
+         Event description goes here. It provides a brief overview of the event.
+        </p>
+        <div class="mt-4 flex justify-between items-center">
+         <span class="text-gray-600">
+          <i class="fas fa-calendar-alt mr-2">
+          </i>
+          5th Mar 2024
+         </span>
+         <button class="text-blue-600 hover:underline">
+          View Details
+         </button>
+        </div>
+       </div>
+      </div>
+      <!-- Event Card -->
+      <div class="bg-white p-4 rounded-lg shadow-md">
+       <img alt="Event image with a panel discussion" class="w-full h-40 object-cover rounded-t-lg" height="200" src="https://storage.googleapis.com/a1aa/image/YPHP5rOsZeeWaoiEmdJo6ky5zCkBb5QfYLSJJbmkBj8.jpg" width="300"/>
+       <div class="mt-4">
+        <h3 class="text-lg font-semibold text-gray-800">
+         Event Title 5
+        </h3>
+        <p class="text-gray-600 mt-2">
+         Event description goes here. It provides a brief overview of the event.
+        </p>
+        <div class="mt-4 flex justify-between items-center">
+         <span class="text-gray-600">
+          <i class="fas fa-calendar-alt mr-2">
+          </i>
+          10th Apr 2024
+         </span>
+         <button class="text-blue-600 hover:underline">
+          View Details
+         </button>
+        </div>
+       </div>
+      </div>
+      <!-- Event Card -->
+      <div class="bg-white p-4 rounded-lg shadow-md">
+       <img alt="Event image with a keynote speaker" class="w-full h-40 object-cover rounded-t-lg" height="200" src="https://storage.googleapis.com/a1aa/image/aUXMUDyxfl0PTc_wWLmyzUBSjm34aSXDi0tKFOUt0xc.jpg" width="300"/>
+       <div class="mt-4">
+        <h3 class="text-lg font-semibold text-gray-800">
+         Event Title 6
+        </h3>
+        <p class="text-gray-600 mt-2">
+         Event description goes here. It provides a brief overview of the event.
+        </p>
+        <div class="mt-4 flex justify-between items-center">
+         <span class="text-gray-600">
+          <i class="fas fa-calendar-alt mr-2">
+          </i>
+          25th May 2024
+         </span>
+         <button class="text-blue-600 hover:underline">
+          View Details
+         </button>
+        </div>
+       </div>
+      </div>
+      <!-- Event Card -->
+      <div class="bg-white p-4 rounded-lg shadow-md">
+       <img alt="Event image with a seminar session" class="w-full h-40 object-cover rounded-t-lg" height="200" src="https://storage.googleapis.com/a1aa/image/9ylnbOkrQ9PqSKGzRXsPfvSx-nYuF6N_1mW5uuMpzBg.jpg" width="300"/>
+       <div class="mt-4">
+        <h3 class="text-lg font-semibold text-gray-800">
+         Event Title 7
+        </h3>
+        <p class="text-gray-600 mt-2">
+         Event description goes here. It provides a brief overview of the event.
+        </p>
+        <div class="mt-4 flex justify-between items-center">
+         <span class="text-gray-600">
+          <i class="fas fa-calendar-alt mr-2">
+          </i>
+          10th Jun 2024
+         </span>
+         <button class="text-blue-600 hover:underline">
+          View Details
+         </button>
+        </div>
+       </div>
+      </div>
+      <!-- Event Card -->
+      <div class="bg-white p-4 rounded-lg shadow-md">
+       <img alt="Event image with a conference session" class="w-full h-40 object-cover rounded-t-lg" height="200" src="https://storage.googleapis.com/a1aa/image/aO2d9R5hAMuoP_86P8zaC41lkkIkW8gLdP2A3bl0fLU.jpg" width="300"/>
+       <div class="mt-4">
+        <h3 class="text-lg font-semibold text-gray-800">
+         Event Title 8
+        </h3>
+        <p class="text-gray-600 mt-2">
+         Event description goes here. It provides a brief overview of the event.
+        </p>
+        <div class="mt-4 flex justify-between items-center">
+         <span class="text-gray-600">
+          <i class="fas fa-calendar-alt mr-2">
+          </i>
+          20th Jul 2024
+         </span>
+         <button class="text-blue-600 hover:underline">
+          View Details
+         </button>
+        </div>
+       </div>
+      </div>
+      <!-- Event Card -->
+      <div class="bg-white p-4 rounded-lg shadow-md">
+       <img alt="Event image with a product launch" class="w-full h-40 object-cover rounded-t-lg" height="200" src="https://storage.googleapis.com/a1aa/image/5zz7dETVxLmyxk0gE02hSJOZ1MKUl_PeEeeBBIsE7bs.jpg" width="300"/>
+       <div class="mt-4">
+        <h3 class="text-lg font-semibold text-gray-800">
+         Event Title 9
+        </h3>
+        <p class="text-gray-600 mt-2">
+         Event description goes here. It provides a brief overview of the event.
+        </p>
+        <div class="mt-4 flex justify-between items-center">
+         <span class="text-gray-600">
+          <i class="fas fa-calendar-alt mr-2">
+          </i>
+          5th Aug 2024
+         </span>
+         <button class="text-blue-600 hover:underline">
+          View Details
+         </button>
+        </div>
+       </div>
+      </div>
+      <!-- Event Card -->
+      <div class="bg-white p-4 rounded-lg shadow-md">
+       <img alt="Event image with a charity event" class="w-full h-40 object-cover rounded-t-lg" height="200" src="https://storage.googleapis.com/a1aa/image/9zNBuHhWRQ4rP-Kg4LW1mbtc00mqGfZD4xbhp2POhTI.jpg" width="300"/>
+       <div class="mt-4">
+        <h3 class="text-lg font-semibold text-gray-800">
+         Event Title 10
+        </h3>
+        <p class="text-gray-600 mt-2">
+         Event description goes here. It provides a brief overview of the event.
+        </p>
+        <div class="mt-4 flex justify-between items-center">
+         <span class="text-gray-600">
+          <i class="fas fa-calendar-alt mr-2">
+          </i>
+          15th Sep 2024
+         </span>
+         <button class="text-blue-600 hover:underline">
+          View Details
+         </button>
+        </div>
+       </div>
+      </div>
+      <!-- Event Card -->
+      <div class="bg-white p-4 rounded-lg shadow-md">
+       <img alt="Event image with a music concert" class="w-full h-40 object-cover rounded-t-lg" height="200" src="https://storage.googleapis.com/a1aa/image/03_swoGAZnHevar8luGXDAoWOQ23qmt_ebUdhpVrfE0.jpg" width="300"/>
+       <div class="mt-4">
+        <h3 class="text-lg font-semibold text-gray-800">
+         Event Title 11
+        </h3>
+        <p class="text-gray-600 mt-2">
+         Event description goes here. It provides a brief overview of the event.
+        </p>
+        <div class="mt-4 flex justify-between items-center">
+         <span class="text-gray-600">
+          <i class="fas fa-calendar-alt mr-2">
+          </i>
+          25th Oct 2024
+         </span>
+         <button class="text-blue-600 hover:underline">
+          View Details
+         </button>
+        </div>
+       </div>
+      </div>
+      <!-- Event Card -->
+      <div class="bg-white p-4 rounded-lg shadow-md">
+       <img alt="Event image with a sports event" class="w-full h-40 object-cover rounded-t-lg" height="200" src="https://storage.googleapis.com/a1aa/image/WpIeDJ4VIhtYJeVEYlGU5p7sfacZuEyn0_P_Z8ZaBDo.jpg" width="300"/>
+       <div class="mt-4">
+        <h3 class="text-lg font-semibold text-gray-800">
+         Event Title 12
+        </h3>
+        <p class="text-gray-600 mt-2">
+         Event description goes here. It provides a brief overview of the event.
+        </p>
+        <div class="mt-4 flex justify-between items-center">
+         <span class="text-gray-600">
+          <i class="fas fa-calendar-alt mr-2">
+          </i>
+          5th Nov 2024
+         </span>
+         <button class="text-blue-600 hover:underline">
+          View Details
+         </button>
+        </div>
+       </div>
+      </div>
+      <!-- Event Card -->
+      <div class="bg-white p-4 rounded-lg shadow-md">
+       <img alt="Event image with a tech conference" class="w-full h-40 object-cover rounded-t-lg" height="200" src="https://storage.googleapis.com/a1aa/image/9a88hneGU5k9bNg5cKognPei27Sq3UvVwpaMgn7J-WY.jpg" width="300"/>
+       <div class="mt-4">
+        <h3 class="text-lg font-semibold text-gray-800">
+         Event Title 13
+        </h3>
+        <p class="text-gray-600 mt-2">
+         Event description goes here. It provides a brief overview of the event.
+        </p>
+        <div class="mt-4 flex justify-between items-center">
+         <span class="text-gray-600">
+          <i class="fas fa-calendar-alt mr-2">
+          </i>
+          15th Dec 2024
+         </span>
+         <button class="text-blue-600 hover:underline">
+          View Details
+         </button>
+        </div>
+       </div>
+      </div>
+      <!-- Event Card -->
+      <div class="bg-white p-4 rounded-lg shadow-md">
+       <img alt="Event image with a fashion show" class="w-full h-40 object-cover rounded-t-lg" height="200" src="https://storage.googleapis.com/a1aa/image/wACZRcpjj2l2Lu8cl2awnr9fg7nG2_QdV2XWrejHuXg.jpg" width="300"/>
+       <div class="mt-4">
+        <h3 class="text-lg font-semibold text-gray-800">
+         Event Title 14
+        </h3>
+        <p class="text-gray-600 mt-2">
+         Event description goes here. It provides a brief overview of the event.
+        </p>
+        <div class="mt-4 flex justify-between items-center">
+         <span class="text-gray-600">
+          <i class="fas fa-calendar-alt mr-2">
+          </i>
+          25th Jan 2025
+         </span>
+         <button class="text-blue-600 hover:underline">
+          View Details
+         </button>
+        </div>
+       </div>
+      </div>
+      <!-- Event Card -->
+      <div class="bg-white p-4 rounded-lg shadow-md">
+       <img alt="Event image with a food festival" class="w-full h-40 object-cover rounded-t-lg" height="200" src="https://storage.googleapis.com/a1aa/image/w13inn5-_cz2K6oJDCQJlbfSCpvQrX2-geb18yimX94.jpg" width="300"/>
+       <div class="mt-4">
+        <h3 class="text-lg font-semibold text-gray-800">
+         Event Title 15
+        </h3>
+        <p class="text-gray-600 mt-2">
+         Event description goes here. It provides a brief overview of the event.
+        </p>
+        <div class="mt-4 flex justify-between items-center">
+         <span class="text-gray-600">
+          <i class="fas fa-calendar-alt mr-2">
+          </i>
+          5th Feb 2025
+         </span>
+         <button class="text-blue-600 hover:underline">
+          View Details
+         </button>
+        </div>
+       </div>
+      </div>
+     </div>
+    </main>
+   </div>
+  </div>
+ </body>
+ <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const userMenuButton = document.getElementById("user-menu-button");
+        const userMenu = document.getElementById("user-menu");
+
+        userMenuButton.addEventListener("click", function () {
+            userMenu.classList.toggle("hidden");
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener("click", function (event) {
+            if (!userMenuButton.contains(event.target) && !userMenu.contains(event.target)) {
+                userMenu.classList.add("hidden");
+            }
+        });
+    });
+</script>
+
+</html>

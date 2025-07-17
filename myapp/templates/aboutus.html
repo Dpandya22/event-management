@@ -1,0 +1,145 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Event Management - About Us
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/>
+  <style>
+   body {
+            font-family: 'Roboto', sans-serif;
+        }
+  </style>
+ </head>
+ <body class="bg-gray-100">
+  <!-- Navbar -->
+  <nav class="bg-white shadow-md">
+   <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+    <a class="text-2xl font-bold text-gray-800" href="#">
+     Eventify
+    </a>
+    <ul class="flex space-x-6">
+     <li>
+      <a class="text-gray-600 hover:text-gray-800" href="index.html">
+       Home
+      </a>
+     </li>
+     <li>
+      <a class="text-gray-600 hover:text-gray-800" href="events.html">
+       Events
+      </a>
+     </li>
+     <li>
+      <a class="text-gray-600 hover:text-gray-800" href="#">
+       About
+      </a>
+     </li>
+     <li>
+      <a class="text-gray-600 hover:text-gray-800" href="contactus.html">
+       Contact
+      </a>
+     </li>
+     <li>
+        <a class="text-gray-600 hover:text-gray-800" href="myprofile.html">
+         My Profile
+        </a>
+       </li>
+    </ul>
+   </div>
+  </nav>
+  <!-- About Us Section -->
+  <section class="py-20 bg-white">
+   <div class="container mx-auto px-4 text-center">
+      <h2 class="text-3xl font-bold text-gray-800 mb-6">
+         {{ about.title|default:"About Us" }}
+      </h2>
+      <p class="text-gray-600 max-w-2xl mx-auto mb-8">
+         {{ about.description|default:"Welcome to Eventify, your ultimate destination for discovering and managing exciting events." }}
+      </p>
+      <img alt="About Us Image" class="w-full max-w-3xl mx-auto rounded-lg shadow-md"
+         src="{{ about.image_url|default:'https://via.placeholder.com/800x400' }}" width="800" height="400"/>
+   </div>
+</section>
+
+<!-- Our Mission Section -->
+<section class="py-20 bg-gray-100">
+   <div class="container mx-auto px-4 text-center">
+      <h3 class="text-2xl font-bold text-gray-800 mb-4">
+         {{ about.mission_title|default:"Our Mission" }}
+      </h3>
+      <p class="text-gray-600 max-w-2xl mx-auto">
+         {{ about.mission_description|default:"At Eventify, we strive to curate, manage, and promote world-class events." }}
+      </p>
+   </div>
+</section>
+
+
+  <!-- Team Section -->
+  <section class="py-20 bg-white">
+   <div class="container mx-auto px-4 text-center">
+    <h3 class="text-2xl font-bold text-gray-800 mb-6">
+     Meet Our Team
+    </h3>
+    <div class="grid md:grid-cols-3 gap-8">
+     <div class="bg-gray-100 p-6 rounded-lg shadow-md">
+      <img alt="Portrait of John Doe, Founder &amp; CEO" class="w-24 h-24 mx-auto rounded-full mb-4" height="100" src="https://storage.googleapis.com/a1aa/image/3_GcRaGA04mgwJKebz1myGLooshakb_PPHhpmvyWCyk.jpg" width="100"/>
+      <h4 class="text-lg font-bold text-gray-800">
+       John Doe
+      </h4>
+      <p class="text-gray-600">
+       Founder &amp; CEO
+      </p>
+     </div>
+     <div class="bg-gray-100 p-6 rounded-lg shadow-md">
+      <img alt="Portrait of Jane Smith, Event Manager" class="w-24 h-24 mx-auto rounded-full mb-4" height="100" src="https://storage.googleapis.com/a1aa/image/yrUByv2_xQSdqbLI5dl4diKxcfuetXA_1MeRvNfs604.jpg" width="100"/>
+      <h4 class="text-lg font-bold text-gray-800">
+       Jane Smith
+      </h4>
+      <p class="text-gray-600">
+       Event Manager
+      </p>
+     </div>
+     <div class="bg-gray-100 p-6 rounded-lg shadow-md">
+      <img alt="Portrait of Michael Johnson, Marketing Head" class="w-24 h-24 mx-auto rounded-full mb-4" height="100" src="https://storage.googleapis.com/a1aa/image/fSBwX_r5GDLoWfAWnPxHYAiwtwqUbdYXRnzZmhxpJQg.jpg" width="100"/>
+      <h4 class="text-lg font-bold text-gray-800">
+       Michael Johnson
+      </h4>
+      <p class="text-gray-600">
+       Marketing Head
+      </p>
+     </div>
+    </div>
+   </div>
+  </section>
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-8">
+   <div class="container mx-auto px-4 text-center">
+    <p>
+     © 2023 Eventify. All rights reserved.
+    </p>
+    <div class="flex justify-center space-x-4 mt-4">
+     <a class="text-white hover:text-gray-400" href="#">
+      <i class="fab fa-facebook-f">
+      </i>
+     </a>
+     <a class="text-white hover:text-gray-400" href="#">
+      <i class="fab fa-twitter">
+      </i>
+     </a>
+     <a class="text-white hover:text-gray-400" href="#">
+      <i class="fab fa-instagram">
+      </i>
+     </a>
+     <a class="text-white hover:text-gray-400" href="#">
+      <i class="fab fa-linkedin-in">
+      </i>
+     </a>
+    </div>
+   </div>
+  </footer>
+ </body>
+</html>

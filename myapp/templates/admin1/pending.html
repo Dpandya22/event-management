@@ -1,0 +1,139 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Event Management Admin Panel
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+  <style>
+   body {
+            font-family: 'Roboto', sans-serif;
+        }
+  </style>
+ </head>
+ <body class="bg-gray-100">
+  <div class="min-h-screen flex flex-col">
+   <!-- Header -->
+   <header class="bg-white shadow-md py-4">
+    <div class="container mx-auto flex justify-between items-center px-6">
+        <div class="text-2xl font-bold text-gray-800">Admin Panel Dashboard</div>
+        <div class="flex items-center space-x-4 relative">
+            <button class="text-gray-600 hover:text-gray-800">
+                <i class="fas fa-bell"></i>
+            </button>
+            <div class="relative">
+                <button class="text-gray-600 hover:text-gray-800 focus:outline-none" id="user-menu-button">
+                    <i class="fas fa-user-circle"></i>
+                </button>
+                <div class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-2 z-20 hidden" id="user-menu">
+                    <a href="myprofile" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Profile</a>
+                    <a href="setting" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Settings</a>
+                    <a href="login" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Main Content -->
+<div class="flex flex-1">
+    <!-- Sidebar -->
+    <aside class="bg-white w-64 min-h-screen shadow-md">
+        <nav class="mt-10">
+            <a class="flex items-center py-2 px-6 text-gray-600 hover:bg-gray-200 hover:text-gray-800" href="dashboard">
+                <i class="fas fa-tachometer-alt mr-3"></i>
+                Dashboard
+            </a>
+            <a class="flex items-center py-2 px-6 text-gray-600 hover:bg-gray-200 hover:text-gray-800" href="pending">
+                <i class="fas fa-calendar-alt mr-3"></i>
+                 Events Pending
+            </a>
+            <a class="flex items-center py-2 px-6 text-gray-600 hover:bg-gray-200 hover:text-gray-800" href="result">
+                <i class="fas fa-calendar-alt mr-3"></i>
+                Events Result
+            </a>
+            <a class="flex items-center py-2 px-6 text-gray-600 hover:bg-gray-200 hover:text-gray-800" href="user">
+                <i class="fas fa-users mr-3"></i>
+                Participant Users 
+            </a>
+            <a class="flex items-center py-2 px-6 text-gray-600 hover:bg-gray-200 hover:text-gray-800" href="organizer">
+                <i class="fas fa-users mr-3"></i>
+                Organizer Users 
+            </a>
+            <a class="flex items-center py-2 px-6 text-gray-600 hover:bg-gray-200 hover:text-gray-800" href="setting">
+                <i class="fas fa-cogs mr-3"></i>
+                Settings
+            </a>
+        </nav>
+    </aside>
+    <!-- Main Section -->
+    <main class="flex-1 p-6">
+     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for event in events %}
+        <div class="bg-white p-4 rounded-lg shadow-md">
+            <!-- Event Image -->
+            <img 
+                alt="{{ event.name }}" 
+                class="w-full h-40 object-cover rounded-t-lg" 
+                src="{{ event.cover_image.url }}" 
+                height="200" 
+                width="300"
+            />
+        
+            <div class="mt-4">
+                <!-- Event Name -->
+                <h3 class="text-lg font-semibold text-gray-800">
+                    {{ event.name }}
+                </h3>
+        
+                <!-- Event Description (Truncated) -->
+                <p class="text-gray-600 mt-2">
+                    {{ event.description|truncatewords:20 }}
+                </p>
+        
+                <div class="mt-4 flex justify-between items-center">
+                    <!-- Event Date -->
+                    <span class="text-gray-600">
+                        <i class="fas fa-calendar-alt mr-2"></i> {{ event.date }}
+                    </span>
+        
+                    <!-- View Details Button -->
+                    <a href="request?id={{event.id}}">
+                        <button class="text-blue-600 hover:underline">
+                            View Details
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        
+
+      </div>
+     </div>
+    </main>
+   </div>
+  </div>
+ </body>
+ <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const userMenuButton = document.getElementById("user-menu-button");
+        const userMenu = document.getElementById("user-menu");
+
+        userMenuButton.addEventListener("click", function () {
+            userMenu.classList.toggle("hidden");
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener("click", function (event) {
+            if (!userMenuButton.contains(event.target) && !userMenu.contains(event.target)) {
+                userMenu.classList.add("hidden");
+            }
+        });
+    });
+</script>
+
+</html>

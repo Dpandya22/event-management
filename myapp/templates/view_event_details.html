@@ -1,0 +1,316 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Event Details</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        /* product design start */
+
+        .product-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+        
+        .product-card:hover {
+            transform: scale(1.05);
+        }
+
+        .product-img {
+            height: 250px;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        .product-info {
+            padding: 15px;
+        }
+        
+        .btn-toggle {
+            background-color: #007bff;
+            color: white;
+            width: 100%;
+            text-align: center;
+        }
+
+        /*  product design ends */
+
+    </style>
+</head>
+<body class="bg-gray-100">
+    <!-- Navbar -->
+    <nav class="bg-white shadow-md">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+         <a class="text-2xl font-bold text-gray-800" href="#">
+          Eventify
+         </a>
+         <ul class="flex space-x-6">
+          <li>
+           <a class="text-gray-600 hover:text-gray-800" href="home">
+            Home
+           </a>
+          </li>
+          <li>
+           <a class="text-gray-600 hover:text-gray-800" href="aboutus.html">
+            About
+           </a>
+          </li>
+          <li>
+           <a class="text-gray-600 hover:text-gray-800" href="contactus.html">
+            Contact
+           </a>
+          </li>
+          <li>
+            <a class="text-gray-600 hover:text-gray-800" href="myprofile.html">
+             My Profile
+            </a>
+           </li>
+         </ul>
+        </div>
+       </nav>
+    
+       <div class="min-h-screen flex flex-col items-center justify-center p-10">
+    
+        <!-- Main Content -->
+        <div class="flex flex-1 items-center justify-center w-full">
+            
+            <!-- Main Section -->
+            <main class="p-4 bg-white shadow-md rounded-lg w-full max-w-3xl">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h2 class="text-2xl font-bold mb-6">Event Details</h2>
+                    <form>
+                        {% csrf_token %}
+
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="event-name">
+                                Event Name
+                            </label>
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" disabled="" value="{{event.name}}" name="event_name" id="event-name" placeholder="Event Name" type="text" />
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="event-date">
+                                Event Date
+                            </label>
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" disabled="" value="{{event.date|date:'Y-m-d' }}" name="event_date" id="event-date" type="date" />
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="event-time">
+                                Event Start Time
+                            </label>
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" disabled="" value="{{event.time|time:'H:i'}}" name="event_time" id="event-time" type="time" />
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="event-time">
+                                Event Ticket Price (Per person)
+                            </label>
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" disabled="" value="{{event.price}}" name="event_price" id="event-time" type="number" />
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="event-time">
+                                Total Tickets
+                            </label>
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" disabled="" value="{{ticket_avl}}" name="ticket_avl" id="ticket-avl" type="number" />
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="event-location">
+                                Event Location
+                            </label>
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" disabled="" value="{{event.location}}" name="event_location" id="event-location" placeholder="Event Location/ mention city/district/area" type="text" />
+                        </div>
+                        <div class="mb-4">
+                            <label for="stateSelect" class="block text-gray-700 text-sm font-bold mb-2">State:</label>
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" disabled="" value="{{event.state}}" name="event_state" id="event-state"  type="text" />
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="event-description">
+                                Event Description
+                            </label>
+                            <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="event_desc" id="event-description" placeholder="Event Description" rows="4" disabled="">{{event.description}}</textarea>
+                        </div>
+                        <div class="mb-4">
+                            <label for="stateSelect" class="block text-gray-700 text-sm font-bold mb-2">Total Tickets Sold</label>
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" disabled="" value="{{total_tickets_booked}}" name="event_state" id="event-state"  type="text" />
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            {% if event.date > today and ticket_avl > 0 %}
+                            <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" onclick="return bookTickets('{{event.id}}','{{event.price}}','{{ticket_avl}}')">
+                                Book Tickets
+                            </button>
+                            {% endif %}
+                            <a href="#">
+                            <button class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+                                Back
+                            </button></a>
+                        </div>
+                        
+                    </form>
+                </div>
+
+                {% if event_images %}
+                <h2 class="text-2xl font-bold p-4">Event Pictures</h2>
+
+                    <div class="container-fluid">
+                    <div class="row">
+                    {% for event_image in event_images %}
+
+                    
+                            <!-- Product Card 1 -->
+                            <div class="col-md-6 col-sm-6 col-12 mb-3">
+                                <div class="product-card">
+                                    <img src="{{ event_image.image.url }}"  alt="Event Image" class="product-img">
+                    
+                                </div>
+                    
+                            </div>
+                    {% endfor %}
+                    </div>
+                    </div>
+                {% endif %}
+
+            </main>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+
+    <script>
+    function bookTickets(eventId, ticketPrice, ticket_avl) {
+    Swal.fire({
+        title: "Book Tickets",
+        html: `
+            <p>Enter the number of tickets you want to book:</p>
+            <input type="number" id="ticketCount" class="swal2-input" min="1" max="9" step="1" placeholder="Enter number of tickets">
+            <p>Total Amount: <strong id="totalAmount">0</strong></p>
+        `,
+        icon: "info",
+        showCancelButton: true,
+        confirmButtonColor: "#28a745",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Proceed to Payment",
+        didOpen: () => {
+            const ticketInput = document.getElementById("ticketCount");
+            const totalAmountDisplay = document.getElementById("totalAmount");
+
+            ticketInput.addEventListener("input", function () {
+                let ticketCount = parseInt(this.value) || 0;
+                let totalAmount = ticketCount * ticketPrice;
+                totalAmountDisplay.textContent = totalAmount.toFixed(2); // Format as currency
+            });
+        },
+        preConfirm: () => {
+            const ticketCount = parseInt(document.getElementById("ticketCount").value);
+            if (!ticketCount || ticketCount <= 0) {
+                Swal.showValidationMessage("Please enter a valid number of tickets!");
+                return false;
+            } else if (ticketCount > ticket_avl){
+                Swal.showValidationMessage("Not enough tickets");
+                return false;
+            }
+            return ticketCount;
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            const ticketCount = result.value;
+            const totalAmount = ticketCount * ticketPrice * 100; // Razorpay uses paise
+            initiatePayment(eventId, ticketCount, totalAmount);
+        }
+    });
+}
+
+// Function to call Razorpay
+function initiatePayment(eventId, ticketCount, amount) {
+    fetch("/create_order/", { // Django view to create Razorpay order
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": getCSRFToken(), // CSRF Token for Django
+        },
+        body: JSON.stringify({
+            amount: amount,
+            event_id: eventId,
+            ticket_count: ticketCount
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            var options = {
+                "key": data.razorpay_key, 
+                "amount": amount,
+                "currency": "INR",
+                "name": "Concert Booking",
+                "description": "Purchase Tickets",
+                "order_id": data.order_id,
+                "handler": function (response) {
+                    confirmPayment(response, eventId, ticketCount);
+                },
+                "theme": {
+                    "color": "#3399cc"
+                }
+            };
+            var rzp1 = new Razorpay(options);
+            rzp1.open();
+        } else {
+            Swal.fire("Error", "Payment initiation failed", "error");
+        }
+    });
+}
+
+// Confirm Payment
+function confirmPayment(response, eventId, ticketCount) {
+    fetch("/verify_payment/", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": getCSRFToken(), // CSRF Token for Django
+        },
+        body: JSON.stringify({
+            payment_id: response.razorpay_payment_id,
+            order_id: response.razorpay_order_id,
+            signature: response.razorpay_signature,
+            event_id: eventId,
+            ticket_count: ticketCount
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            Swal.fire("Success", "Payment Successful! Booking Confirmed", "success").then(() => {
+                window.location.href = "booked_events";
+            });
+        } else {
+            Swal.fire("Error", "Payment verification failed", "error");
+        }
+    });
+}
+
+// Function to get CSRF token from cookies
+function getCSRFToken() {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== "") {
+        document.cookie.split(";").forEach(cookie => {
+            let [name, value] = cookie.trim().split("=");
+            if (name === "csrftoken") {
+                cookieValue = decodeURIComponent(value);
+            }
+        });
+    }
+    return cookieValue;
+}
+
+
+    </script>
+    
+</body>
+</html>
