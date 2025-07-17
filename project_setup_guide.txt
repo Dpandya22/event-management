@@ -1,0 +1,35 @@
+Project installation Instruction:
+
+open cmd and follow steps(must be in same directory)
+Project is created using Djnago, Html,Bootstrap and MySQL database
+
+-> It has two side user and organizer , by default it will open user side (e.g. http://127.0.0.1:8000/)
+-> To Open organizer side, u need to append "/organizer/" in url (e.g. http://127.0.0.1:8000/organizer/)
+
+1st create virtual environment:
+-> python -m venv venv
+
+2nd start virtual environment
+-> venv\Scripts\activate
+
+3rd download Django 
+-> pip install django==5.0.1
+
+4th download following libraries
+-> pip install mysqlclient==2.2.7
+-> pip install reportlab
+
+5th extract zip file and navigate to mcaproject directory 
+
+6th create database in MySQL named "eventify" and import tables which is there in mcaproject directory named "eventify.sql"
+
+7th run two below commands (from cmd navigate to mcaproject folder where manage.py file is present)
+-> python manage.py makemigrations
+-> python manage.py migrate
+
+8th run project
+-> python manage.py runserver 
+it will give one link, open that in browser (e.g. http://127.0.0.1:8000/)
+
+for User Side : need to signup and login
+for Organizer side : can create new account
